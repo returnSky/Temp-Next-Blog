@@ -1,5 +1,5 @@
 module.exports = {
   env: {
-    customKey: 'my-value',
+    CUSTOM_KEY: 'my-value',
   },
 };
