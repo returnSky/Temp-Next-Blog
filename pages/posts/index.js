@@ -17,7 +17,7 @@ function Message({ open, type, message, handleCloseMessage }) {
   );
 }
 
-function Post() {
+function Post({ name }) {
   const [msgInfo, setMsgInfo] = useState({
     open: false,
     type: 'success',
@@ -46,10 +46,14 @@ function Post() {
       // message: '',
     });
   }
+  
+  console.log('ggg', name);
 
   return (
     <Box>
       <p>{publicRuntimeConfig.mySecret}</p>
+      <p>{process.env.HOSTNAME}</p>
+      <p>{process.env.NEXT_PUBLIC_ANALYTICS_ID}</p>
       <p>{process.env.CUSTOM_KEY}</p>
       <Button variant="outlined" onClick={handleClick}>
         Test
@@ -57,6 +61,15 @@ function Post() {
       <Message {...msgInfo} handleCloseMessage={handleCloseMessage} />
     </Box>
   );
+}
+
+export async function getServerSideProps(context) {
+  
+  return {
+    props: {
+      name: process.env.HOSTNAME
+    }, // will be passed to the page component as props
+  }
 }
 
 export default Post;
