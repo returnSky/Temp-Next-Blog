@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import getConfig from 'next/config'
 import { Box, Button, Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
@@ -22,7 +23,7 @@ function Post() {
     type: 'success',
     message: '',
   });
-  const [open, setOpen] = useState(false);
+  const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
   function handleClick() {
     // setOpen(true);
@@ -48,7 +49,7 @@ function Post() {
 
   return (
     <Box>
-      <p>{process.env.TEST_KEY}</p>
+      <p>{publicRuntimeConfig.mySecret}</p>
       <p>{process.env.CUSTOM_KEY}</p>
       <Button variant="outlined" onClick={handleClick}>
         Test
