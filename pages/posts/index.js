@@ -48,6 +48,7 @@ function Post() {
 
   return (
     <Box>
+      <p>{process.env.customKey}</p>
       <Button variant="outlined" onClick={handleClick}>
         Test
       </Button>
