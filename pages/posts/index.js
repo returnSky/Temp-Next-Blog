@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import getConfig from 'next/config'
-import { Box, Button, Snackbar } from '@material-ui/core';
+import { Box, Button, Typography, Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
 function Alert(props) {
@@ -17,7 +17,7 @@ function Message({ open, type, message, handleCloseMessage }) {
   );
 }
 
-function Post({ hostname, customKey }) {
+function Post({ hostname }) {
   const [msgInfo, setMsgInfo] = useState({
     open: false,
     type: 'success',
@@ -26,7 +26,6 @@ function Post({ hostname, customKey }) {
   const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
   function handleClick() {
-    // setOpen(true);
     setMsgInfo({
       open: true,
       type: 'error',
@@ -47,10 +46,9 @@ function Post({ hostname, customKey }) {
   
   return (
     <Box>
-      <p>{publicRuntimeConfig.mySecret}</p>
-      <p>{hostname}</p>
-      <p>{process.env.NEXT_PUBLIC_ANALYTICS_ID}</p>
-      <p>{customKey}</p>
+      <Typography>Public Runtime Config(mySecret): {publicRuntimeConfig.mySecret}</Typography>
+      <Typography>process.env(HOST_NAME): {hostname}</Typography>
+      <Typography>Public process.env(NEXT_PUBLIC_ANALYTICS_ID): {process.env.NEXT_PUBLIC_ANALYTICS_ID}</Typography>
       <Button variant="outlined" onClick={handleClick}>
         Test
       </Button>
@@ -66,7 +64,6 @@ export async function getStaticProps(context) {
   return {
     props: {
       hostname: process.env.HOST_NAME,
-      customKey: process.env.CUSTOM_KEY
     }, // will be passed to the page component as props
   }
 }
