@@ -17,7 +17,7 @@ function Message({ open, type, message, handleCloseMessage }) {
   );
 }
 
-function Post({ name }) {
+function Post({ hostname, customKey }) {
   const [msgInfo, setMsgInfo] = useState({
     open: false,
     type: 'success',
@@ -42,19 +42,17 @@ function Post({ name }) {
     setMsgInfo({
       ...msgInfo,
       open: false,
-      // type: 'success',
-      // message: '',
     });
   }
   
-  console.log('ggg', name);
+  console.log('ggg', hostname);
 
   return (
     <Box>
       <p>{publicRuntimeConfig.mySecret}</p>
-      <p>{process.env.HOSTNAME}</p>
+      <p>{hostname}</p>
       <p>{process.env.NEXT_PUBLIC_ANALYTICS_ID}</p>
-      <p>{process.env.CUSTOM_KEY}</p>
+      <p>{customKey}</p>
       <Button variant="outlined" onClick={handleClick}>
         Test
       </Button>
@@ -63,11 +61,13 @@ function Post({ name }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   
+  console.log('gg node', process.env.CUSTOM_KEY);
   return {
     props: {
-      name: process.env.HOSTNAME
+      hostname: process.env.HOSTNAME,
+      customKey: process.env.CUSTOM_KEY
     }, // will be passed to the page component as props
   }
 }
