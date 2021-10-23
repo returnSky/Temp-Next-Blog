@@ -45,8 +45,6 @@ function Post({ hostname, customKey }) {
     });
   }
   
-  console.log('ggg', hostname);
-
   return (
     <Box>
       <p>{publicRuntimeConfig.mySecret}</p>
@@ -66,7 +64,7 @@ export async function getStaticProps(context) {
   console.log('gg node', process.env.CUSTOM_KEY);
   return {
     props: {
-      hostname: process.env.HOSTNAME,
+      hostname: process.env.HOST_NAME,
       customKey: process.env.CUSTOM_KEY
     }, // will be passed to the page component as props
   }
