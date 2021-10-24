@@ -3,6 +3,6 @@ module.exports = {
     customKey: 'my-value',
   },
   publicRuntimeConfig: {
-    mySecret: 'secret',
+    MY_SECRET: 'secret',
   }
 };

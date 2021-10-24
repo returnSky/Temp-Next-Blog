@@ -46,7 +46,7 @@ function Post({ hostname }) {
   
   return (
     <Box>
-      <Typography>Public Runtime Config(mySecret): {publicRuntimeConfig.mySecret}</Typography>
+      <Typography>Public Runtime Config(MY_SECRET): {publicRuntimeConfig.MY_SECRET}</Typography>
       <Typography>process.env(HOST_NAME): {hostname}</Typography>
       <Typography>Public process.env(NEXT_PUBLIC_ANALYTICS_ID): {process.env.NEXT_PUBLIC_ANALYTICS_ID}</Typography>
       <Button variant="outlined" onClick={handleClick}>
