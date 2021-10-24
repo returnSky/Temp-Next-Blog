@@ -61,6 +61,7 @@ export async function getStaticProps(context) {
   
   console.log('gg node key:', process.env.CUSTOM_KEY);
   console.log('gg node host name:', process.env.HOST_NAME);
+  console.log('gg node env', process.env.NODE_ENV);
   return {
     props: {
       hostname: process.env.HOST_NAME,
